@@ -111,4 +111,25 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Password berhasil diubah.');
     }
+
+    public function dataPendaftarLulus($id)
+    {
+        $user = StudentRegistration::find($id);
+        $user->update([
+            'status' => 'diterima',
+        ]);
+        return redirect()->back()->with([
+            'success' => 'Data pendaftaran berhasil diubah menjadi lulus.',
+        ]);
+    }
+    public function dataPendaftarGagal($id)
+    {
+        $user = StudentRegistration::find($id);
+        $user->update([
+            'status' => 'rejected',
+        ]);
+        return redirect()->back()->with([
+            'success' => 'Data pendaftaran berhasil diubah menjadi lulus.',
+        ]);
+    }
 }

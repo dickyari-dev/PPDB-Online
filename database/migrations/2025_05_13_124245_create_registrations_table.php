@@ -49,6 +49,7 @@ return new class extends Migration
             $table->string('previous_school')->nullable();
             $table->string('school_address')->nullable();
             $table->string('school_npsn')->nullable(); // NPSN Sekolah Asal
+            $table->string('status')->default('pending'); // Tingkat Sekolah Asal
             $table->timestamps();
         });
     }

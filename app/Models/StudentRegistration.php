@@ -33,6 +33,7 @@ class StudentRegistration extends Model
         'previous_school',
         'school_address',
         'school_npsn',
+        'status',
     ];
 
     /**

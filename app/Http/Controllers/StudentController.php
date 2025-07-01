@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\StudentRegistration;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class StudentController extends Controller
 {
     public function dashboard()
     {
-        return view('students.dashboard');
+        $pendaftaran = StudentRegistration::where('user_id', auth()->user()->id)->first();
+        return view('students.dashboard', compact('pendaftaran'));
     }
 
     public function pendaftaran()
@@ -131,5 +133,15 @@ class StudentController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Data pendaftaran berhasil diperbarui.');
+    }
+
+    public function buktiPendaftaran()
+    {
+        $idUser = auth()->id();
+        $pendaftaran = StudentRegistration::where('user_id', $idUser)
+            ->orderBy('created_at', 'desc')
+            ->first();
+        $pdf = Pdf::loadView('students.buktiPendaftaran', compact('pendaftaran'));
+        return $pdf->download('bukti-pendaftaran.pdf');
     }
 }

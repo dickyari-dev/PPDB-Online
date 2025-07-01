@@ -34,6 +34,7 @@ Route::middleware(['auth.check', 'role:students'])->group(function () {
     Route::get('/students/pendaftaran', [StudentController::class, 'pendaftaran'])->name('student.pendaftaran');
     Route::post('/students/pendaftaran-store', [StudentController::class, 'pendaftaranstore'])->name('student.pendaftaranstore');
     Route::post('/students/pendaftaran-update', [StudentController::class, 'pendaftaranupdate'])->name('student.pendaftaranupdate');
+    Route::get('/students/pendaftaran-buktiPendaftaran', [StudentController::class, 'buktiPendaftaran'])->name('student.pendaftaran.buktiPendaftaran');
     
 
 });
@@ -48,6 +49,8 @@ Route::middleware(['auth.check', 'role:admin'])->group(function () {
     Route::get('/admin/dataPendaftar/update/{id}', [AdminController::class, 'dataPendaftarUpdate'])->name('admin.pendaftar.edit');
     Route::post('/admin/dataPendaftar/update-post', [AdminController::class, 'pendaftarUpdatePost'])->name('admin.pendaftaranupdate');
     Route::get('/admin/dataPendaftar/delete/{id}', [AdminController::class, 'dataPendaftarDelete'])->name('admin.pendaftar.delete');
+    Route::get('/admin/dataPendaftar/lulus/{id}', [AdminController::class, 'dataPendaftarLulus'])->name('admin.pendaftar.lulus');
+    Route::get('/admin/dataPendaftar/gagal/{id}', [AdminController::class, 'dataPendaftarGagal'])->name('admin.pendaftar.gagal');
     
     
     // Data Account
